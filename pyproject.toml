@@ -1,0 +1,37 @@
+[project]
+name = "moduletrace"
+version = "0.1.0"
+description = "Scans Terraform state/HCP Explorer for module usage, cross-references multi-cloud billing by tag, and generates human-gated cleanup plans."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2",
+    "pydantic-settings>=2",
+    "typer>=0.12",
+    "rich>=13",
+    "httpx>=0.27",
+    "python-hcl2>=4",
+    "boto3>=1.34",
+    "google-cloud-bigquery>=3.20",
+    "google-cloud-resource-manager>=1.12",
+    "azure-mgmt-costmanagement>=4.0",
+    "azure-identity>=1.16",
+    "azure-mgmt-resource>=23.0",
+]
+
+[project.scripts]
+moduletrace = "moduletrace.cli:app"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+    "pytest-mock>=3",
+    "respx>=0.21",
+]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
